@@ -15,6 +15,7 @@ class EjemploPipeline:
         archivo.write(f"medio: {item['medio']}\n\n")
         archivo.write(f"numero: {item['numero']}\n\n")
         archivo.write(f"link: {item['link']}\n\n")
+        archivo.write(f"fecha: {item['fecha']}\n\n")
         archivo.write(f"contenido principal: {item['contenido']}\n\n")
         archivo.write(f"contenido auxiliar: {item['contenido_auxiliar']}\n\n")
         archivo.close()
