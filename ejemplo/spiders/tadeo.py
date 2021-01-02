@@ -17,7 +17,7 @@ class tadeo(scrapy.Spider):
         for link in a :
             i = i + 1
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link,"i":i})
-        print("holaaaaaaaaaaaaaaaaaaa---------------------")
+            
         next_page = f"https://www.utadeo.edu.co/es/search/node/%22conflicto%20armado%22?page={self.page}"
         if self.page <= 44:
             self.page = self.page + 1
