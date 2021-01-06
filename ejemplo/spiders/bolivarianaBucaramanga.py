@@ -2,7 +2,7 @@ import scrapy
 from ..items import EjemploItem
 import sys
 
-class tadeo(scrapy.Spider):
+class bolivarianaBucaramanga(scrapy.Spider):
     name = 'bolivarianaBucaramanga'
     start_urls = ["https://estacionv.bucaramanga.upb.edu.co/buscar?searchword=conflicto%20armado&ordering=newest&searchphrase=all&areas[0]=categories&areas[1]=contacts&areas[2]=content&areas[3]=newsfeeds&areas[4]=weblinks&areas[5]=k2"]
     page = 1

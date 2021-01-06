@@ -1,13 +1,8 @@
 import scrapy
 from ..items import EjemploItem
 import sys
-#links= 
-#title = //div[@class="field-item even"]/text()
-#date = //span[@class="date-display-single"]/text()
-#texto = //p[@class]text()
-#texto_auxiliar = //strong/text()
 
-class tadeo(scrapy.Spider):
+class univalle(scrapy.Spider):
     name = 'univalle'
     start_urls = ["http://ciudadvaga.univalle.edu.co/page/1/?s=conflicto+armado"]
     page = 1

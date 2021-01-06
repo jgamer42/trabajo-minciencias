@@ -2,7 +2,7 @@ import scrapy
 from ..items import EjemploItem
 import sys
 
-class tadeo(scrapy.Spider):
+class rosario(scrapy.Spider):
     name = 'rosario'
     start_urls = ["https://plazacapital.co/search/conflicto-armado/page-1?t=1609619674793&tpl=search"]
     page = 1

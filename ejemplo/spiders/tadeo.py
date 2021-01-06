@@ -1,11 +1,6 @@
 import scrapy
 from ..items import EjemploItem
 import sys
-#links= 
-#title = //div[@class="field-item even"]/text()
-#date = //span[@class="date-display-single"]/text()
-#texto = //p[@class]text()
-#texto_auxiliar = //strong/text()
 
 class tadeo(scrapy.Spider):
     name = 'tadeo'
