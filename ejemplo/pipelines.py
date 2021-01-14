@@ -10,7 +10,8 @@ from itemadapter import ItemAdapter
 
 class EjemploPipeline:
     def process_item(self, item, spider):
-        archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
+        #archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
+        archivo = open(f"/home/jaime/Escritorio/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
         archivo.write(f"titulo: {item['titulo']}\n\n")
         archivo.write(f"medio: {item['medio']}\n\n")
         archivo.write(f"numero: {item['numero']}\n\n")
