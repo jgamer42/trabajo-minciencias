@@ -28,7 +28,6 @@ class rosario(scrapy.Spider):
         aux = response.xpath("//div/p/strong/text()").getall()
         content = " ".join(content)
         aux = "".join(aux)
-        print(f"\n\n\n\n\n\n\n {content}")
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
@@ -38,4 +37,6 @@ class rosario(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"]=self.name
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item

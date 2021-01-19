@@ -10,8 +10,15 @@ from itemadapter import ItemAdapter
 
 class EjemploPipeline:
     def process_item(self, item, spider):
-        #archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
-        archivo = open(f"/home/jaime/Escritorio/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
+        if item["exploracion_general"]:
+            self.procesar(item)
+        else:
+            pass
+        return item
+
+    def procesar(self,item):
+        archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
+        #archivo = open(f"/home/jaime/Escritorio/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
         archivo.write(f"titulo: {item['titulo']}\n\n")
         archivo.write(f"medio: {item['medio']}\n\n")
         archivo.write(f"numero: {item['numero']}\n\n")
@@ -19,5 +26,5 @@ class EjemploPipeline:
         archivo.write(f"fecha: {item['fecha']}\n\n")
         archivo.write(f"contenido principal: {item['contenido']}\n\n")
         archivo.write(f"contenido auxiliar: {item['contenido_auxiliar']}\n\n")
+        archivo.write(f"etiqueta exploracion: {item['etiqueta_exploracion']}\n\n")
         archivo.close()
-        return item

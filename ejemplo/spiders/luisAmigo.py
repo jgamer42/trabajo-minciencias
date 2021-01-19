@@ -16,7 +16,7 @@ class luisAmigo(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = EjemploItem()
         title = response.xpath("//article/h2/text()").get()
-        content = response.xpath("//article/div/p").getall()
+        content = response.xpath("//article/div/p/text()").getall()
         aux = response.xpath("//article/div/p/strong/text() | //article/div/p/span/text()").getall()
         content = " ".join(content)
         aux = " ".join(aux)
@@ -28,4 +28,6 @@ class luisAmigo(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"]=self.name
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item

@@ -37,4 +37,6 @@ class universidadManizales(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"]=self.name
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item

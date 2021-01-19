@@ -35,4 +35,6 @@ class universidadIbague(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = "no disponible en este medio"
         item["medio"]=self.name
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item

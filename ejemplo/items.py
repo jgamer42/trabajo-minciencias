@@ -16,3 +16,5 @@ class EjemploItem(scrapy.Item):
     contenido_auxiliar = scrapy.Field()
     link = scrapy.Field()
     titulo = scrapy.Field()
+    exploracion_general = scrapy.Field()
+    etiqueta_exploracion = scrapy.Field()

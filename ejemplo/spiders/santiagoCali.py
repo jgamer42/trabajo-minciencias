@@ -29,7 +29,6 @@ class santiagoCali(scrapy.Spider):
         aux = response.xpath("//section/p/strong/text() | //section/p/strong/em/text()").getall()
         content = " ".join(content)
         aux = "".join(aux)
-        print(f"\n\n\n\n\n\n\n {content}")
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
@@ -39,4 +38,6 @@ class santiagoCali(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"]=self.name
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item
