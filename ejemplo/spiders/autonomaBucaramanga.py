@@ -40,6 +40,6 @@ class autonomaBucaramanga(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"]=self.name
-        item["exploracion_general"] = True
+        item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         yield item

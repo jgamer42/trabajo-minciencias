@@ -1,9 +1,5 @@
 import scrapy
 from ..items import EjemploItem
-import sys
-import site
-site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias/utils")
-from utils.buscar_palabras import buscar_palabras
 class bolivarianaMedellin(scrapy.Spider):
     name = 'bolivarianaMedellin'
     start_urls = ["https://periodicocontexto.wixsite.com/contexto/inicio/page/1"]
@@ -28,7 +24,6 @@ class bolivarianaMedellin(scrapy.Spider):
         content = " ".join(content)
         aux = response.xpath("//article/div/div/div/div/p/span/em/strong/text()").getall()
         aux = " ".join(aux)
-        validar = buscar_palabras(content)
         item["link"]=kwargs["link"]
         item["numero"]=1
         item["titulo"] = title
@@ -36,6 +31,6 @@ class bolivarianaMedellin(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"] = self.name
-        item["exploracion_general"] = validar[0]
-        item["etiqueta_exploracion"] = validar[1]
+        item["exploracion_general"] = True
+        item["etiqueta_exploracion"] = None
         yield item

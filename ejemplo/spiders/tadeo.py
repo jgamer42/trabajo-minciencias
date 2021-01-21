@@ -35,7 +35,7 @@ class tadeo(scrapy.Spider):
         items["fecha"] = date
         items["contenido"] = content
         items["contenido_auxiliar"] = aux_content
-        item["exploracion_general"] = True
+        item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         yield items
 

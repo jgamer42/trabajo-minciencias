@@ -6,19 +6,26 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import site
+site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias/utils")
+from utils.buscar_palabras import buscar_palabras
 
 class EjemploPipeline:
     def process_item(self, item, spider):
         if item["exploracion_general"]:
-            self.procesar(item)
+            self.validar_palabras_clave(item)
         else:
-            pass
+            self.procesar(item)
         return item
+
+    def validar_palabras_clave(self,item):
+        validar = buscar_palabras(item["contenido"])
+        if validar[0] == True:
+            item["etiqueta_exploracion"] = validar[1]
+            self.procesar(item)
 
     def procesar(self,item):
         archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
-        #archivo = open(f"/home/jaime/Escritorio/trabajo-minciencias/{item['medio']}/{item['titulo']}.txt","w+")
         archivo.write(f"titulo: {item['titulo']}\n\n")
         archivo.write(f"medio: {item['medio']}\n\n")
         archivo.write(f"numero: {item['numero']}\n\n")
