@@ -2,7 +2,7 @@ import scrapy
 from ..items import EjemploItem
 import site
 site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias/utils")
-from utils.procesar_peticion import procesar_peticion
+from utils.procesar_peticion import eafit_itinerarios_otros, eafit_itinerarios_all
 from utils.reducir_dimension import reducir_dimension
 class eafit_itinerarios(scrapy.Spider):
     name = 'eafit_itinerarios'
@@ -13,9 +13,13 @@ class eafit_itinerarios(scrapy.Spider):
         links.append(response.xpath("//div/p/a/@href").getall())
         paginacion = 1
         while paginacion <= 15:
-            aux = procesar_peticion(paginacion)
+            aux = eafit_itinerarios_all(paginacion)
             links.append(aux)
             paginacion += 1
+        #actualidad 
+        links.append(eafit_itinerarios_otros(2791))
+        #entrevistar y pyr
+        links.append(eafit_itinerarios_otros(2793))
         links = reducir_dimension(links)
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
