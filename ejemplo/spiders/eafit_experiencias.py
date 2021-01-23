@@ -2,31 +2,26 @@ import scrapy
 from ..items import EjemploItem
 import site
 site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias/utils")
-from utils.procesar_peticion import eafit_itinerarios_otros, eafit_itinerarios_all
+from utils import procesar_peticion
 from utils.reducir_dimension import reducir_dimension
-class eafit_itinerarios(scrapy.Spider):
-    name = 'eafit_itinerarios'
-    start_urls = ["http://bitacora.eafit.edu.co/itinerarios/"]
-    page = 2
+class eafit_experiencias(scrapy.Spider):
+    name = 'eafit_experiencias'
+    start_urls = ["http://bitacora.eafit.edu.co/experiencias/"]
     def parse(self,response):
         links = []
         links.append(response.xpath("//div/p/a/@href").getall())
-        paginacion = 1
-        while paginacion <= 15:
-            aux = eafit_itinerarios_all(paginacion)
-            links.append(aux)
-            paginacion += 1
-        #actualidad 
-        links.append(eafit_itinerarios_otros(2791))
-        #entrevistar y pyr
-        links.append(eafit_itinerarios_otros(2793))
+        #cronicas
+        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2792))
+        #entrevistas
+        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2826))
+        #perfiles
+        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2824))
+        #reportajes graficos
+        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2797))
         links = reducir_dimension(links)
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
-        
-        
-        
-
+              
     def get_info(self,response,**kwargs):
         item = EjemploItem()
         date = response.xpath("//ul/li[@itemprop]/a/span/text()").get()
