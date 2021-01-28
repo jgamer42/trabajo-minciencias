@@ -9,7 +9,10 @@ def identificar_formato(texto):
     identificador = texto[-4:]
     identificador_2 = texto.split(",")
     if len(identificador_2) == 2:
-        return formato_5(texto)
+        if re.search("^[0-9]",texto):
+            return formato_6(texto)
+        else:
+            return formato_5(texto)
     elif re.search("^[0-9]{2}",texto):
         return formato_4(texto)
     elif "de" in texto:
@@ -60,7 +63,7 @@ def formato_4(texto):
     mes = identificar_mes(texto[2])
     return [int(texto[0]),mes,int(texto[-1])]
 
-#funcion encargada de procesar las fechas en formado "octubre 30, 2020"
+#funcion encargada de procesar las fechas en formato "octubre 30, 2020"
 #formato usado en Eafit
 def formato_5(texto):
     data = texto.split(",")
@@ -70,6 +73,15 @@ def formato_5(texto):
     dia = int(aux[1].strip())
     return [dia,mes,año]
 
+#funcion encargada de procesar en formato "27 septiembre, 2018"
+#formato usado en uniminuto radio
+def formato_6(texto):
+    data = texto.split(",")
+    año = int(data[-1].strip())
+    aux = data[0].split()
+    mes = identificar_mes(aux[-1])
+    dia = int(aux[0].strip())
+    return [dia,mes,año]
 
 def identificar_mes(texto):
     texto = texto.lower()
