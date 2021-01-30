@@ -20,7 +20,6 @@ class plataforma_upb_archivo_noticias(scrapy.Spider):
     def get_info(self,response,**kwargs):
         items = EjemploItem()
         items["link"]=kwargs["link"]
-        items["numero"]=1
         items["medio"]=self.name
         title = response.xpath('//h2/text()').get()
         title = title.strip()
@@ -36,4 +35,7 @@ class plataforma_upb_archivo_noticias(scrapy.Spider):
         items["contenido_auxiliar"] = aux_content
         items["exploracion_general"] = True
         items["etiqueta_exploracion"] = None
+        items["ciudad"] = "Bucaramanga"
+        items["nombre_medio"] = "plataforma"
+        items["universidad"] = "bolivariana bucaramanga"
         yield items

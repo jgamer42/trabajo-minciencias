@@ -31,7 +31,6 @@ class univalle(scrapy.Spider):
         content = " ".join(content)
         aux = " ".join(aux)
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = kwargs["titulo"]
         item["fecha"] = "no disponible en este medio"
         item["contenido"] = content
@@ -39,4 +38,7 @@ class univalle(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Cali"
+        item["nombre_medio"] = "ciudad vaga"
+        item["universidad"] = "univalle"
         yield item

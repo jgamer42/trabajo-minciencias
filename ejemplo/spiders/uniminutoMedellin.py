@@ -25,7 +25,6 @@ class uniminutoMedellin(scrapy.Spider):
         aux = " ".join(aux)
         date = response.xpath("//time/text()").getall()[0]
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -33,4 +32,7 @@ class uniminutoMedellin(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Medellin"
+        item["nombre_medio"] = "norte urbano"
+        item["universidad"] = "uniminuto"
         yield item

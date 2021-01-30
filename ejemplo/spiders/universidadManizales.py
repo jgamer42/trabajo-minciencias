@@ -31,7 +31,6 @@ class universidadManizales(scrapy.Spider):
         aux = " ".join(aux)
         date = response.xpath("//header/div/span/time/text()").get()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -39,4 +38,7 @@ class universidadManizales(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Manizales"
+        item["nombre_medio"] = "um central"
+        item["universidad"] = "universidad de Manizales"
         yield item

@@ -30,7 +30,6 @@ class unisabana(scrapy.Spider):
         content = " ".join(content)
         aux = " ".join(aux)
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = "no disponible en este medio"
         item["contenido"] = content
@@ -38,6 +37,9 @@ class unisabana(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Bogota"
+        item["nombre_medio"] = "unisabana medios"
+        item["universidad"] = "unisabana"
         yield item
 
 

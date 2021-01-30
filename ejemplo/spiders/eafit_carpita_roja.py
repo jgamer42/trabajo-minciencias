@@ -19,7 +19,6 @@ class eafit_carpita_roja(scrapy.Spider):
         aux = response.xpath("//p/strong/text() | //div[@class='elementor-testimonial-content']/text()").getall()
         aux = " ".join(aux)
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -27,4 +26,7 @@ class eafit_carpita_roja(scrapy.Spider):
         item["medio"] = self.name
         item["exploracion_general"] = True
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Medellin"
+        item["nombre_medio"] = "bitacora"
+        item["universidad"] = "eafit"
         yield item

@@ -30,7 +30,6 @@ class fundacionUniversitariaPopayan(scrapy.Spider):
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -38,4 +37,7 @@ class fundacionUniversitariaPopayan(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Popayan"
+        item["nombre_medio"] = "el claustro"
+        item["universidad"] = "fundacion universitaria de popayan"
         yield item

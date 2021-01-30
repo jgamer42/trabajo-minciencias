@@ -25,7 +25,6 @@ class bolivarianaMedellin(scrapy.Spider):
         aux = response.xpath("//article/div/div/div/div/p/span/em/strong/text()").getall()
         aux = " ".join(aux)
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = "no disponible en este medio"
         item["contenido"] = content
@@ -33,4 +32,7 @@ class bolivarianaMedellin(scrapy.Spider):
         item["medio"] = self.name
         item["exploracion_general"] = True
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Medellin"
+        item["nombre_medio"] = "contexto"
+        item["universidad"] = "bolivariana de medellin"
         yield item

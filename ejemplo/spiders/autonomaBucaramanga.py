@@ -34,7 +34,6 @@ class autonomaBucaramanga(scrapy.Spider):
         aux = " ".join(aux)
         date = response.xpath("//time/text()").get()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -42,4 +41,7 @@ class autonomaBucaramanga(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Bucaramanga"
+        item["nombre_medio"] = "periodico 15"
+        item["universidad"] = "autonoma de bucaramanga"
         yield item

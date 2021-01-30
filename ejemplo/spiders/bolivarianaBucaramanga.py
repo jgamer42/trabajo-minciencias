@@ -29,7 +29,6 @@ class bolivarianaBucaramanga(scrapy.Spider):
         title = title.lstrip()
         date = kwargs["date"].lstrip()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -37,4 +36,7 @@ class bolivarianaBucaramanga(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Bucaramanga"
+        item["nombre_medio"] = "estacion V"
+        item["universidad"] = "bolivariana bucaramanga"
         yield item

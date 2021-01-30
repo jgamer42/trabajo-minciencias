@@ -30,7 +30,7 @@ def uniminuto(pagina):
         "td_current_page":pagina,
         "block_type":"tdb_loop",
         "action" :"td_ajax_block",
-        "td_magic_token" : "b243d2601c"
+        "td_magic_token" : "2b9829b74f"
     }
     datos = requests.post(url, data=data)
     raw_data = json.loads(datos.text)

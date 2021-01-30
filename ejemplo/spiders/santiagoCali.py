@@ -24,7 +24,11 @@ class santiagoCali(scrapy.Spider):
         item = EjemploItem()
         title = response.xpath("//h1/a/text()").get()
         title = title.strip()
-        date = response.xpath("//time/text()").getall()[0]
+        date = response.xpath("//time/text()").getall()
+        if (date != None) and (len(date)>=1):
+            date = date[0]
+        else:
+            date = "no disponible"
         content = response.xpath("//section/p/text()").getall()
         aux = response.xpath("//section/p/strong/text() | //section/p/strong/em/text()").getall()
         content = " ".join(content)
@@ -32,7 +36,6 @@ class santiagoCali(scrapy.Spider):
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -40,4 +43,7 @@ class santiagoCali(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Cali"
+        item["nombre_medio"] = "utopicos"
+        item["universidad"] = "universidad santiago de cali"
         yield item

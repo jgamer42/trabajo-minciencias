@@ -31,7 +31,6 @@ class rosario(scrapy.Spider):
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -39,4 +38,7 @@ class rosario(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Bogota"
+        item["nombre_medio"] = "plaza capital"
+        item["universidad"] = "rosario"
         yield item

@@ -29,7 +29,6 @@ class universidadIbague(scrapy.Spider):
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
-        item["numero"]=1
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
@@ -37,4 +36,7 @@ class universidadIbague(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
+        item["ciudad"] = "Ibague"
+        item["nombre_medio"] = "el anzuelo medios"
+        item["universidad"] = "universidad de Ibague"
         yield item

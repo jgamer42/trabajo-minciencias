@@ -8,10 +8,8 @@ class tadeo(scrapy.Spider):
     page = 1
     def parse(self,response):
         a = response.xpath('//h3[@class="title"]/a/@href').getall()
-        i = 0
         for link in a :
-            i = i + 1
-            yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link,"i":i})
+            yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
             
         next_page = f"https://www.utadeo.edu.co/es/search/node/%22conflicto%20armado%22?page={self.page}"
         if self.page <= 44:
@@ -21,7 +19,6 @@ class tadeo(scrapy.Spider):
     def get_info(self,response,**kwargs):
         items = EjemploItem()
         items["link"]=kwargs["link"]
-        items["numero"]=kwargs["i"]
         items["medio"]=self.name
         title = response.xpath('//div[@class="field-item even"]/text()').getall()[1]
         date = response.xpath('//span[@class="date-display-single"]/text()').get()
@@ -37,6 +34,9 @@ class tadeo(scrapy.Spider):
         items["contenido_auxiliar"] = aux_content
         items["exploracion_general"] = False
         items["etiqueta_exploracion"] = None
+        items["ciudad"] = "Bogota"
+        items["nombre_medio"] = "crossmedialab"
+        items["universidad"] = "tadeo"
         yield items
 
 
