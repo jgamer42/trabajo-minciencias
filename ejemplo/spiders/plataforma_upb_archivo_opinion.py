@@ -29,7 +29,7 @@ class plataforma_upb_archivo_opinion(scrapy.Spider):
         items["contenido_auxiliar"] = aux_content
         items["exploracion_general"] = True
         items["etiqueta_exploracion"] = None
-        item["ciudad"] = "Bucaramanga"
-        item["nombre_medio"] = "plataforma"
-        item["universidad"] = "bolivariana bucaramanga"
+        items["ciudad"] = "Bucaramanga"
+        items["nombre_medio"] = "plataforma"
+        items["universidad"] = "bolivariana bucaramanga"
         yield items

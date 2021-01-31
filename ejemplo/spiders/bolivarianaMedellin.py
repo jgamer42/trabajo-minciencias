@@ -19,14 +19,19 @@ class bolivarianaMedellin(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = EjemploItem()
         title = response.xpath("//div/h1/span/span/text()").getall()[1]
+        title = title.replace("/","")
         title = title.strip()
         content = response.xpath("//article/div/div/div/div/p/span/text()").getall()
         content = " ".join(content)
         aux = response.xpath("//article/div/div/div/div/p/span/em/strong/text()").getall()
         aux = " ".join(aux)
+        date = kwargs["link"].split("/")
+        date = date[5:8]
+        date = list(reversed(date))
+        date = "/".join(date)
         item["link"]=kwargs["link"]
         item["titulo"] = title
-        item["fecha"] = "no disponible en este medio"
+        item["fecha"] = date
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["medio"] = self.name
