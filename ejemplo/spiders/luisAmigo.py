@@ -29,7 +29,7 @@ class luisAmigo(scrapy.Spider):
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
-        item["ciudad"] = "Manizales"
+        item["ciudad"] = "Medellin"
         item["nombre_medio"] = "sextante digital"
         item["universidad"] = "luis amigo"
         yield item
