@@ -9,7 +9,6 @@ config.sections()
 config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
 carpetas = config["carpetas"]["carpetas"]
 carpetas = carpetas.split(",") 
-print(carpetas)
 for carpeta in carpetas:
     print(f"\n\n{carpeta}")
     file = open(f"../exports/{carpeta}.json")
@@ -34,7 +33,7 @@ for carpeta in carpetas:
                     fecha = f"{fecha[0]}/{fecha[1]}/{fecha[2]}"
                     fechas.append(fecha)
         fechas.sort(key = lambda date:datetime.strptime(date,'%d/%m/%Y'))
-        print(fechas[0],"-",fechas[1])
+        print(fechas[0],"-",fechas[-1])
         file.close()
 
 
