@@ -29,8 +29,8 @@ class santiagoCali(scrapy.Spider):
             date = date[0]
         else:
             date = "no disponible"
-        content = response.xpath("//section/p/text()").getall()
-        aux = response.xpath("//section/p/strong/text() | //section/p/strong/em/text()").getall()
+        content = response.xpath("//section/p/text() | //section/div/text() | //section/div/font/text() | //p/font/font/font/font/text()").getall()
+        aux = response.xpath("//section/p/strong/text() | //section/p/strong/em/text() | //p/span/span/text() | //p/span/text()").getall()
         content = " ".join(content)
         aux = "".join(aux)
         title = title.strip()
