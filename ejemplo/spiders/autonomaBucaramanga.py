@@ -28,8 +28,8 @@ class autonomaBucaramanga(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = EjemploItem()
         title = response.xpath("//h1/text()").get()
-        content = response.xpath("//div/p/text()").getall()
-        aux = response.xpath("//div/p/strong/text()").getall()
+        content = response.xpath("//div/p/text() | //div[@class='td-post-content td-pb-padding-side']/div/text()").getall()
+        aux = response.xpath("//div/p/strong/text() | //div/p/span/text() | //div/p/b/text()").getall()
         content = " ".join(content)
         aux = " ".join(aux)
         date = response.xpath("//time/text()").get()
