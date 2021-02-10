@@ -25,7 +25,7 @@ class rosario(scrapy.Spider):
         title = response.xpath("//div/h2/text()").get()
         date = response.xpath("//div/div[@class='item-info-head']/span/text()").get()
         content = response.xpath("//div/p/text()").getall()
-        aux = response.xpath("//div/p/strong/text()").getall()
+        aux = response.xpath("//div/p/strong/text() | //div/p/span/text()").getall()
         content = " ".join(content)
         aux = "".join(aux)
         title = title.strip()
