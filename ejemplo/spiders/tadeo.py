@@ -22,10 +22,8 @@ class tadeo(scrapy.Spider):
         items["medio"]=self.name
         title = response.xpath('//div[@class="field-item even"]/text()').getall()[1]
         date = response.xpath('//span[@class="date-display-single"]/text()').get()
-        content = response.xpath('//p[@class]/text()').getall()
-        if content == []:
-            content = response.xpath('//div[@class="field-item even"]/p/text()').getall()
-        aux_content = response.xpath('//strong/text()').getall()
+        content = response.xpath('//p[@class]/text() | //div[@class="field-item even"]/p/text() | //div[@style="text-align: justify;"]/p/text() | //div[@class="field-item even" and @property]/div[@class]/text()').getall()
+        aux_content = response.xpath('//div/p/span/text() | //p/span/text() | //strong/text() | //td/p/text()').getall()
         aux_content = "".join(aux_content)
         content = "".join(content)
         items["titulo"] = title
