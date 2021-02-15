@@ -26,8 +26,8 @@ class uniminutoradio(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = EjemploItem()
         title = response.xpath("//div/h1[@class='tdb-title-text']/text()").get()
-        content = response.xpath("//div[@class='tdb-block-inner td-fix-index']/p/text()").getall()
-        aux = response.xpath("//div[@class='tdb-block-inner td-fix-index']/h2/text()").getall()
+        content = response.xpath("//div[@class='tdb-block-inner td-fix-index']/p/text() | //div[@dir]/text() | //div[@class='tdb-block-inner td-fix-index']/div/div/p/strong/text()|//div[@class='tdb-block-inner td-fix-index']/div/p/text()|//div[@class='tdb-block-inner td-fix-index']/p/text() |//div[@class='tdb-block-inner td-fix-index']/p/strong/text()").getall()
+        aux = response.xpath("//div[@class='tdb-block-inner td-fix-index']/h2/text() | //p/span/text() | //p/em/text()").getall()
         date = response.xpath('//div/time/text()').get()
         content = " ".join(content)
         aux = " ".join(aux)
