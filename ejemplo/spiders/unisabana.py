@@ -1,10 +1,6 @@
 import scrapy
 from ..items import EjemploItem
 import sys
-#links = //div[@data-hook]/ul/li/a/@href
-#titulo = //div/div/h4/span/span/span/text()
-#contenido = //div/p/text()
-#texto_auxiliar = //strong/text()
 
 class unisabana(scrapy.Spider):
     name = 'unisabana'
@@ -26,6 +22,7 @@ class unisabana(scrapy.Spider):
         except:
             title = response.xpath("//div/div/h1/span/text()").get()
         content = response.xpath("//div/p/text()").getall()
+        content = content.strip()
         aux = response.xpath("//div/p/strong/text()").getall()
         content = " ".join(content)
         aux = " ".join(aux)

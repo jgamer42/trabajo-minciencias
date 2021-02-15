@@ -25,7 +25,6 @@ class bolivarianaBucaramanga(scrapy.Spider):
         title = response.xpath("//article/h1/text()").get()
         content = response.xpath("//article/div/p/text()").getall()
         content = " ".join(content)
-        print(f"\n\n\n\n\n\n\n {content}")
         title = title.lstrip()
         date = kwargs["date"].lstrip()
         item["link"]=kwargs["link"]

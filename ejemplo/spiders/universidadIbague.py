@@ -24,15 +24,18 @@ class universidadIbague(scrapy.Spider):
         item = EjemploItem()
         title = response.xpath("//header/h1/text()").get()
         date = response.xpath("//time/@datetime").get()
-        content = response.xpath("//article/div/p/strong/text() | //article/div/p/span/text() ").getall()
+        content = response.xpath("//article/div/p/strong/text() | //article/div/p/span/text() | //div[contains(@style,'color: #222222; font-family: arial, sans-serif;')]/text() | //p[@style]/text()  | //div[@class='content clearfix']/p/text() | //font/p/text() | //p/span/text()").getall()
         content = " ".join(content)
+        content = content.strip()
+        aux = response.xpath("//span/strong/span/text() ").getall()
+        aux = " ".join(aux)
         title = title.strip()
         date = date.strip()
         item["link"]=kwargs["link"]
         item["titulo"] = title
         item["fecha"] = date
         item["contenido"] = content
-        item["contenido_auxiliar"] = "no disponible en este medio"
+        item["contenido_auxiliar"] = aux
         item["medio"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
