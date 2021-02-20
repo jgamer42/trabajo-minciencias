@@ -145,22 +145,4 @@ dmypy.json
 .prof
 
 # End of https://www.toptal.com/developers/gitignore/api/python
-universidadManizales
-rosario
-tadeo 
-unisabana
-univalle
-fundacionUniversitariaPopayan
-bolivarianaBucaramanga
-autonomaBucaramanga
-uniminutoMedellin
-santiagoCali
-universidadIbague
-luisAmigo
-bolivarianaMedellin
-eafit
-eafit_carpita_roja
-uniminutoradio
-plataforma_upb
-plataforma_upb_archivo_noticias
-plataforma_upb_archivo_opinion
+corpus
