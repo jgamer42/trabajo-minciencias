@@ -4,7 +4,7 @@ def buscar_palabras(texto):
     config.sections()
     bandera = False
     config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
-    palabras = config["palabras"]["palabras"]
+    palabras = config["palabras_clave"]["palabras"]
     palabras = palabras.split(",")
     etiqueta = None
     print(palabras)

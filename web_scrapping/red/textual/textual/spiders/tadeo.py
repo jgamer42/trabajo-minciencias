@@ -35,7 +35,7 @@ class tadeo(scrapy.Spider):
         items["ciudad"] = "Bogota"
         items["nombre_medio"] = "crossmedialab"
         items["universidad"] = "tadeo"
-        item["departamento"] = "Cundinamarca"
+        items["departamento"] = "Cundinamarca"
 
         yield items
 

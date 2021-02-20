@@ -11,12 +11,16 @@ class eafit(scrapy.Spider):
     def parse(self,response):
         links = []
         links.append(response.xpath("//div/p/a/@href").getall())
-        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2792))
-        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2826))
-        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2824))
-        links.append(procesar_peticion.eafit(1,12126,"4868ad26",2797))
-        links.append(procesar_peticion.eafit(1,10509,"ea82ef9",2791))
-        links.append(procesar_peticion.eafit(1,10509,"ea82ef9",2793))
+        #itinerario
+        #links.append(procesar_peticion.eafit(1,10509,"ad23021",2791))
+        #links.append(procesar_peticion.eafit(1,10509,"ad23021",2793))
+        #links.append(procesar_peticion.eafit(1,10509,"ad23021",2825))
+        #experiencias
+        #links.append(procesar_peticion.eafit(1,12126,"4868ad26",2792))
+        #links.append(procesar_peticion.eafit(1,12126,"4868ad26",2826))
+        #links.append(procesar_peticion.eafit(1,12126,"4868ad26",2824))
+        #links.append(procesar_peticion.eafit(1,12126,"4868ad26",2797))
+        #brujula
         links.append(procesar_peticion.eafit(1,12224,"236ccb61",2795))
         links.append(procesar_peticion.eafit(1,12224,"236ccb61",2796))
         links.append(procesar_peticion.eafit(1,12224,"236ccb61",2821))
@@ -38,8 +42,11 @@ class eafit(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = TextualItem()
         date = response.xpath("//ul/li[@itemprop]/a/span/text()").get()
-        title = response.xpath("//h6/text()").getall()[0]
-        title = title.strip()
+        try:
+            title = response.xpath("//h6/text()").getall()[0]
+            title = title.strip()
+        except:
+            title = ""
         content = response.xpath("//p/text()").getall()
         content = " ".join(content)
         aux = response.xpath("//p/strong/text() | //div[@class='elementor-testimonial-content']/text()").getall()

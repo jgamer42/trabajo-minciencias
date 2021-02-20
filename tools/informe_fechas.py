@@ -11,7 +11,7 @@ carpetas = config["carpetas"]["carpetas"]
 carpetas = carpetas.split(",") 
 for carpeta in carpetas:
     print(f"\n\n{carpeta}")
-    file = open(f"../exports/{carpeta}.json")
+    file = open(f"../corpus/red/exports/{carpeta}.json")
     raw_data = json.load(file)
     fechas = []
     if "no dis" in raw_data[0]["fecha"]:

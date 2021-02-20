@@ -2,6 +2,7 @@ import re
 import nltk 
 from nltk.corpus import stopwords
 from nltk.collocations import *
+import configparser
 
 def extraer_bi_gramas(texto):
     salida = tokenizar(texto)
@@ -23,9 +24,14 @@ def tokenizar(texto):
     return salida
 
 def limpiar_stop_words(texto):
+    config = configparser.ConfigParser()
+    config.sections()
+    config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
+    palabras = config["stop_words"]["palabras"]
+    stops_personalizadas = palabras.split(",")
     stops = stopwords.words("spanish")
     for word in texto:
-        if word in stops or word in ["ha","mi","se","los"] or len(word) == 1:
+        if word in stops or word in stops_personalizadas or len(word) == 1:
             texto.remove(word)
     return texto
 

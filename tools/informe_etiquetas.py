@@ -5,7 +5,7 @@ config.sections()
 config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
 carpetas = config["carpetas"]["carpetas"]
 carpetas = carpetas.split(",")
-os.chdir("../")
+os.chdir("../corpus/red/texto")
 print("informe general")
 os.system("./tools/informe_etiquetas.sh")
 for carpeta in carpetas:
