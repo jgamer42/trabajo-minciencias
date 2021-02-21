@@ -22,9 +22,9 @@ class unisabana(scrapy.Spider):
         except:
             title = response.xpath("//div/div/h1/span/text()").get()
         content = response.xpath("//div/p/text()").getall()
+        content = " ".join(content)
         content = content.strip()
         aux = response.xpath("//div/p/strong/text()").getall()
-        content = " ".join(content)
         aux = " ".join(aux)
         item["link"]=kwargs["link"]
         item["titulo"] = title

@@ -17,21 +17,28 @@ class uniminutoradio(scrapy.Spider):
             links.append(procesar_peticion.uniminuto(i))
             i += 1
         links = reducir_dimension(links)
-        
+        print(links,"\n\n")
         for link in links:
-            yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
+            if link == None:
+                continue
+            else:
+                yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
 
 
 
     def get_info(self,response,**kwargs):
+        print("entro\n\n")
         item = TextualItem()
-        title = response.xpath("//div/h1[@class='tdb-title-text']/text()").get()
+        try:
+            title = response.xpath("//div/h1[@class='tdb-title-text']/text()").get()
+            title = title.strip()
+        except:
+            title = ""
         content = response.xpath("//div[@class='tdb-block-inner td-fix-index']/p/text() | //div[@dir]/text() | //div[@class='tdb-block-inner td-fix-index']/div/div/p/strong/text()|//div[@class='tdb-block-inner td-fix-index']/div/p/text()|//div[@class='tdb-block-inner td-fix-index']/p/text() |//div[@class='tdb-block-inner td-fix-index']/p/strong/text()").getall()
         aux = response.xpath("//div[@class='tdb-block-inner td-fix-index']/h2/text() | //p/span/text() | //p/em/text()").getall()
         date = response.xpath('//div/time/text()').get()
         content = " ".join(content)
         aux = " ".join(aux)
-        title = title.strip()
         item["link"]=kwargs["link"]
         item["titulo"] = title
         item["fecha"] = date
@@ -44,5 +51,4 @@ class uniminutoradio(scrapy.Spider):
         item["nombre_medio"] = "uniminutoradio"
         item["universidad"] = "uniminuto"
         item["departamento"] = "Cundinamarca"
-
         yield item

@@ -38,6 +38,6 @@ class plataforma_upb_archivo_noticias(scrapy.Spider):
         items["ciudad"] = "Bucaramanga"
         items["nombre_medio"] = "plataforma"
         items["universidad"] = "bolivariana bucaramanga"
-        item["departamento"] = "Santander"
+        items["departamento"] = "Santander"
         
         yield items
