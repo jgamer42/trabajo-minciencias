@@ -25,8 +25,6 @@ class TextualPipeline:
             self.procesar(item)
 
     def procesar(self,item):
-        ruta = "/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/texto/{item['medio']}/{item['titulo']}.txt"
-        print(ruta)
         archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/texto/{item['medio']}/{item['titulo']}.txt","w+")
         archivo.write(f"titulo: {item['titulo']}\n\n")
         archivo.write(f"medio: {item['medio']}\n\n")
