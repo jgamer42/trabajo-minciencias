@@ -7,10 +7,8 @@ def buscar_palabras(texto):
     palabras = config["palabras_clave"]["palabras"]
     palabras = palabras.split(",")
     etiqueta = None
-    print(palabras)
     for palabra in palabras:
         busqueda = texto.find(palabra)
-        print(palabra, busqueda)
         if busqueda >= 0:
             bandera = True
             etiqueta = palabra

@@ -18,6 +18,5 @@ class bolivarianaBucaramanga(scrapy.Spider):
     def get_info(self,response,**kwargs):
         item = ImagenesItem()
         item["imagen"] = response.xpath("//img/@src").getall()
-        print("\n\n",item['imagen'],"\n\n")
         item["universidad"] = self.name
         yield item
