@@ -7,7 +7,7 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import site
-site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias")
+site.addsitedir("../../../")
 from utils.buscar_palabras import buscar_palabras
 
 class TextualPipeline:

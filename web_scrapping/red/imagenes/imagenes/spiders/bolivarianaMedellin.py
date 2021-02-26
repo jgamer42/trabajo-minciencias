@@ -1,7 +1,7 @@
 import scrapy
 from ..items import ImagenesItem
 import site
-site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias")
+site.addsitedir("../../../")
 from utils.buscar_palabras import buscar_palabras
 class bolivarianaMedellin(scrapy.Spider):
     name = 'bolivarianaMedellin'
