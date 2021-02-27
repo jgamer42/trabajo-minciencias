@@ -40,7 +40,7 @@ class universidadIbague(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Ibague"
-        item["nombre_medio"] = "el anzuelo medios"
+        item["nombre_medio"] = "el_anzuelo_medios"
         item["universidad"] = "universidad de Ibague"
         item["departamento"] = "Ibague"
 

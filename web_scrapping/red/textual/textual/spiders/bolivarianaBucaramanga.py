@@ -5,7 +5,8 @@ import sys
 class bolivarianaBucaramanga(scrapy.Spider):
     name = 'bolivarianaBucaramanga'
     start_urls = ["https://estacionv.bucaramanga.upb.edu.co/buscar?searchword=conflicto%20armado&ordering=newest&searchphrase=all&areas[0]=categories&areas[1]=contacts&areas[2]=content&areas[3]=newsfeeds&areas[4]=weblinks&areas[5]=k2"]
-    page = 1
+    secciones = ["conflicto%20armado","memoria","victimas","proceso%20de%20paz","paz"]
+
 
     def parse(self,response):
         links = response.xpath("//article/h1/a/@href").getall()
@@ -16,8 +17,9 @@ class bolivarianaBucaramanga(scrapy.Spider):
             date = dates[contador]
             contador = contador + 1
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link,"date":date})
-   
-
+        for seccion in self.secciones:
+            next_page = f"https://estacionv.bucaramanga.upb.edu.co/buscar?searchword={seccion}&ordering=newest&searchphrase=all&areas[0]=categories&areas[1]=contacts&areas[2]=content&areas[3]=newsfeeds&areas[4]=weblinks&areas[5]=k2"
+            yield response.follow(url=next_page,callback=self.parse)
 
 
     def get_info(self,response,**kwargs):
@@ -36,7 +38,7 @@ class bolivarianaBucaramanga(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Bucaramanga"
-        item["nombre_medio"] = "estacion V"
+        item["nombre_medio"] = "estacion_V"
         item["universidad"] = "bolivariana bucaramanga"
         item["departamento"] = "Santander"
         yield item

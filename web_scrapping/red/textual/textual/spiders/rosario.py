@@ -39,7 +39,7 @@ class rosario(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Bogota"
-        item["nombre_medio"] = "plaza capital"
+        item["nombre_medio"] = "plaza_capital"
         item["universidad"] = "rosario"
         item["departamento"] = "Cundinamarca"
         yield item

@@ -33,7 +33,7 @@ class uniminutoMedellin(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Medellin"
-        item["nombre_medio"] = "norte urbano"
+        item["nombre_medio"] = "norte_urbano"
         item["universidad"] = "uniminuto"
         item["departamento"] = "Antioquia"
 

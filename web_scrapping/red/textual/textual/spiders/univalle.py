@@ -39,7 +39,7 @@ class univalle(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Cali"
-        item["nombre_medio"] = "ciudad vaga"
+        item["nombre_medio"] = "ciudad_vaga"
         item["universidad"] = "univalle"
         item["departamento"] = "Valle del cauca"
 

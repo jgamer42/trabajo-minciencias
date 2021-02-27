@@ -35,7 +35,7 @@ class unisabana(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Bogota"
-        item["nombre_medio"] = "unisabana medios"
+        item["nombre_medio"] = "unisabana_medios"
         item["universidad"] = "unisabana"
         item["departamento"] = "Cundinamarca" 
         yield item

@@ -37,7 +37,7 @@ class universidadManizales(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Manizales"
-        item["nombre_medio"] = "um central"
+        item["nombre_medio"] = "um_central"
         item["universidad"] = "universidad de Manizales"
         item["departamento"] = "Caldas"
         yield item

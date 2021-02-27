@@ -10,18 +10,20 @@ import sys
 class autonomaBucaramanga(scrapy.Spider):
     name = 'autonomaBucaramanga'
     start_urls = ["https://www.periodico15.com/page/1/?s=conflicto+armado"]
-    page = 1
+    secciones = {"conflicto+armado":19,"memoria":17,"victimas":18,"proceso+de+paz":19,"paz":34}
 
     def parse(self,response):
         links = response.xpath("//h3/a/@href").getall()
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
 
-        next_page = f"https://www.periodico15.com/page/{self.page}/?s=conflicto+armado"
-        if self.page <= 19:
-            self.page = self.page + 1
-            yield response.follow(url=next_page,callback=self.parse)
-   
+        
+        for seccion in self.secciones.keys():
+            i = 1
+            while i <= self.secciones[seccion]:
+                next_page = f"https://www.periodico15.com/page/{i}/?s={seccion}"
+                i += 1
+                yield response.follow(url=next_page,callback=self.parse)
 
 
 
@@ -42,7 +44,7 @@ class autonomaBucaramanga(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Bucaramanga"
-        item["nombre_medio"] = "periodico 15"
+        item["nombre_medio"] = "periodico_15"
         item["universidad"] = "autonoma de bucaramanga"
         item["departamento"] = "Santander"
         yield item

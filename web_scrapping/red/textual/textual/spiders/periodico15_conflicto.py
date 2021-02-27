@@ -41,7 +41,7 @@ class autonomaBucaramanga(scrapy.Spider):
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Bucaramanga"
-        item["nombre_medio"] = "periodico 15"
+        item["nombre_medio"] = "periodico_15"
         item["universidad"] = "autonoma de bucaramanga"
         item["departamento"] = "Santander"
         yield item
