@@ -4,8 +4,8 @@ import sys
 
 class rosario(scrapy.Spider):
     name = 'rosario'
-    start_urls = ["https://plazacapital.co/search/conflicto-armado/page-1?t=1609619674793&tpl=search"]
-    page = 1
+    start_urls = ["https://plazacapital.co/search/conflicto-armado/page-1"]
+    secciones = {"conflicto-armado":11,"memoria":18,"victimas":22,"proceso-de-paz":7,"paz":40}
 
     def parse(self,response):
         links = response.xpath("//div/h2/a/@href").getall()
@@ -13,10 +13,13 @@ class rosario(scrapy.Spider):
             link = "https://plazacapital.co"+link
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
             
-        next_page = f"https://plazacapital.co/search/conflicto-armado/page-{self.page}?t=1609619674793&tpl=search"
-        if self.page <= 11:
-            self.page = self.page + 1
-            yield response.follow(url=next_page,callback=self.parse)
+
+        for seccion in self.secciones.keys():
+            i = 1
+            while i <= self.secciones[seccion]:
+                next_page = f"https://plazacapital.co/search/{seccion}/page-{i}"
+                i += 1
+                yield response.follow(url=next_page,callback=self.parse)
 
 
 

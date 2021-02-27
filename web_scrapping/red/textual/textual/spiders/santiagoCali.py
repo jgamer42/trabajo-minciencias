@@ -5,19 +5,19 @@ import sys
 class santiagoCali(scrapy.Spider):
     name = 'santiagoCali'
     start_urls = ["http://utopicos.com.co/index.php/component/search/?searchword=conflicto%20armado&searchphrase=all&limitstart=0"]
-    page = 20
-
+    secciones = ["conflicto%20armado","memoria","victimas","proceso%20de%20paz"]
     def parse(self,response):
         links = response.xpath("//dt/a/@href").getall()
         for link in links:
             link = "http://utopicos.com.co"+link
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
-            
-        next_page = f"http://utopicos.com.co/index.php/component/search/?searchword=conflicto%20armado&searchphrase=all&limitstart={self.page}"
-        if self.page <= 40:
-            self.page = self.page + 20
-            yield response.follow(url=next_page,callback=self.parse)
-
+       
+        for seccion in self.secciones:
+            i = 0
+            while i <= 40:
+                next_page = f"http://utopicos.com.co/index.php/component/search/?searchword={seccion}&searchphrase=all&limitstart={i}"
+                i += 20
+                yield response.follow(url=next_page,callback=self.parse)
 
 
     def get_info(self,response,**kwargs):
