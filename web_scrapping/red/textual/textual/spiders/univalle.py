@@ -5,7 +5,7 @@ import sys
 class univalle(scrapy.Spider):
     name = 'univalle'
     start_urls = ["http://ciudadvaga.univalle.edu.co/page/1/?s=conflicto+armado"]
-    page = 1
+    secciones = {"conflicto+armado":3,"memoria":5,"victimas":4,"proceso+de+paz":4,"paz":6}
 
     def parse(self,response):
         links = response.xpath("//h2/a/@href").getall()
@@ -13,12 +13,13 @@ class univalle(scrapy.Spider):
         i = 0
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link,"titulo":titulos[i]})
-            i += 1
-
-        next_page = f"http://ciudadvaga.univalle.edu.co/page/{self.page}/?s=conflicto+armado"
-        if self.page <= 3:
-            self.page = self.page + 1
-            yield response.follow(url=next_page,callback=self.parse)
+            i += 1            
+        for seccion in self.secciones.keys():
+            i = 0
+            while i <= self.secciones[seccion]:
+                next_page = f"http://ciudadvaga.univalle.edu.co/page/{i}/?s={seccion}"
+                i += 1
+                yield response.follow(url=next_page,callback=self.parse)
    
 
 

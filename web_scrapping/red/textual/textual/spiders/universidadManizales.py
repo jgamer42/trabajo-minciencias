@@ -5,6 +5,7 @@ import sys
 class universidadManizales(scrapy.Spider):
     name = 'universidadManizales'
     start_urls = ["https://umcentral.umanizales.edu.co/index.php/page/1/?s=conflicto+armado"]
+    secciones = {"conflicto+armado":2,"memoria":4,"victimas":3,"proceso+de+paz":3,"paz":5}
     page = 1
 
     def parse(self,response):
@@ -12,10 +13,13 @@ class universidadManizales(scrapy.Spider):
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
 
-        next_page = f"https://umcentral.umanizales.edu.co/index.php/page/{self.page}/?s=conflicto+armado"
-        if self.page <= 2:
-            self.page = self.page + 1
-            yield response.follow(url=next_page,callback=self.parse)
+    
+        for seccion in self.secciones.keys():
+            i = 0
+            while i < self.secciones[seccion]:
+                next_page = f"https://umcentral.umanizales.edu.co/index.php/page/{i}/?s={seccion}"
+                i += 1
+                yield response.follow(url=next_page,callback=self.parse)
    
 
 

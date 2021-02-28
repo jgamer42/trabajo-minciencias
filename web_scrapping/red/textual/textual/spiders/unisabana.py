@@ -5,15 +5,18 @@ import sys
 class unisabana(scrapy.Spider):
     name = 'unisabana'
     start_urls = ["https://www.unisabanamedios.com/search-results/q-conflicto-armado/qc-pages/page-1"]
-    page = 1
+    secciones = {"conflicto-armado":19,"memoria":15,"victima":8,"proceso-de-paz":66,"paz":7}
     def parse(self,response):
         links = response.xpath('//div[@data-hook]/ul/li/a/@href').getall()
         for link in links:
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
-        next_page = f"https://www.unisabanamedios.com/search-results/q-conflicto-armado/qc-pages/page-{self.page}"
-        if self.page <= 19:
-            self.page = self.page + 1
-            yield response.follow(url=next_page,callback=self.parse)
+            
+        for seccion in self.secciones.keys():
+            i = 1
+            while i <= self.secciones[seccion]:
+                next_page = f"https://www.unisabanamedios.com/search-results/q-{seccion}/qc-pages/page-{i}"
+                i += 1
+                yield response.follow(url=next_page,callback=self.parse)
     
     def get_info(self,response,**kwargs):
         item = TextualItem()

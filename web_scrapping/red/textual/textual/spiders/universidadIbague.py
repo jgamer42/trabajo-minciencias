@@ -5,7 +5,7 @@ import sys
 class universidadIbague(scrapy.Spider):
     name = 'universidadIbague'
     start_urls = ["https://www.elanzuelomedios.com/index.php/historias?searchword=conflicto%20armado&searchphrase=all&start=0"]
-    page = 20
+    secciones = {"conflicto%20armado":20,"memoria":40,"victimas":0,"proceso%20de%20paz":40,"paz":40}
 
     def parse(self,response):
         links = response.xpath("//article/header/h1/a/@href").getall()
@@ -13,10 +13,12 @@ class universidadIbague(scrapy.Spider):
             link = "https://www.elanzuelomedios.com"+link
             yield response.follow(url=link,callback=self.get_info,cb_kwargs={"link":link})
             
-        next_page = f"https://www.elanzuelomedios.com/index.php/historias?searchword=conflicto%20armado&searchphrase=all&start={self.page}"
-        if self.page <= 20:
-            self.page = self.page + 20
-            yield response.follow(url=next_page,callback=self.parse)
+        for seccion in self.secciones.keys():
+            i = 0
+            while i <= self.secciones[seccion]:
+                next_page = f"https://www.elanzuelomedios.com/index.php/historias?searchword={seccion}&searchphrase=all&start={i}"
+                i += 20
+                yield response.follow(url=next_page,callback=self.parse)
 
 
 
