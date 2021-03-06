@@ -23,7 +23,7 @@ class plataforma_upb(scrapy.Spider):
     def get_info(self,response,**kwargs):
         items = TextualItem()
         items["link"]=kwargs["link"]
-        items["medio"]=self.name
+        items["carpeta"]=self.name
         title = response.xpath('//h1/text()').get()
         title = title.strip()
         date = response.xpath("//time/text()").get()

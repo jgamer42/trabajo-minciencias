@@ -1,8 +1,7 @@
 import os
 def escritor(corpus,item):
     base = os.path.dirname(os.path.dirname(__file__))
-    ruta = os.path.realpath(f"{base}/corpus/red/{corpus}/{item['medio']}/{item['titulo']}.txt")
-    print(ruta)
+    ruta = os.path.realpath(f"{base}/corpus/red/{corpus}/{item['carpeta']}/{item['titulo']}.txt")
     archivo = open(ruta,"w+")
     archivo.write(f"**** *AnalisisMediosUniversitarios\n")
     archivo.write(f"**** *TipoNoticias_Textuales *Medio_{item['nombre_medio']} *Ciudad_{item['ciudad']} *Departamento_{item['departamento']} *Fecha_{item['fecha']}")

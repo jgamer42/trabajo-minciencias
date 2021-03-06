@@ -36,7 +36,7 @@ class univalle(scrapy.Spider):
         item["fecha"] = "no disponible en este medio"
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
-        item["medio"]=self.name
+        item["carpeta"]=self.name
         item["exploracion_general"] = False
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Cali"

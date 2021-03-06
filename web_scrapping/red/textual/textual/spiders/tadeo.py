@@ -21,7 +21,7 @@ class tadeo(scrapy.Spider):
     def get_info(self,response,**kwargs):
         items = TextualItem()
         items["link"]=kwargs["link"]
-        items["medio"]=self.name
+        items["carpeta"]=self.name
         try:
             title = response.xpath('//div[@class="field-item even"]/text()').getall()[1]
         except:

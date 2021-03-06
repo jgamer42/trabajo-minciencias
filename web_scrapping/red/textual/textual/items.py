@@ -9,7 +9,7 @@ import scrapy
 class TextualItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    medio = scrapy.Field()
+    carpeta = scrapy.Field()
     fecha = scrapy.Field()
     contenido = scrapy.Field()
     contenido_auxiliar = scrapy.Field()
