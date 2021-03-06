@@ -10,6 +10,7 @@ import site
 site.addsitedir("../../../")
 from utils.buscar_palabras import buscar_palabras
 from utils import control_fechas
+import os
 class TextualPipeline:
     def process_item(self, item, spider):
         if item["fecha"] == "no disponible" or item["fecha"] == "no disponible en este medio" or item["fecha"] == None or item["fecha"] == [] :
@@ -30,7 +31,8 @@ class TextualPipeline:
             self.procesar(item)
 
     def procesar(self,item):
-        archivo = open(f"/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/texto/{item['medio']}/{item['titulo']}.txt","w+")
+        ruta = os.path.realpath(f"../../../corpus/red/texto/{item['medio']}/{item['titulo']}.txt")
+        archivo = open(ruta,"w+")
         archivo.write(f"**** *AnalisisMediosUniversitarios\n")
         archivo.write(f"**** *TipoNoticias_Textuales *Medio_{item['nombre_medio']} *Ciudad_{item['ciudad']} *Departamento_{item['departamento']} *Fecha_{item['fecha']}")
         archivo.write(f"titulo: {item['titulo']}\n\n")

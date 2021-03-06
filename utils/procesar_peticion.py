@@ -1,6 +1,5 @@
 import requests
 from lxml import html
-import json
 
 def eafit(pagina,post_id,model_id,category):
     url = "http://bitacora.eafit.edu.co/wp-admin/admin-ajax.php"
@@ -43,6 +42,4 @@ def uniminuto(pagina):
         if link.find("/seccion/") != -1:
             links.remove(link)
     return links
-
-print(uniminuto(10))
 

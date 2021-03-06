@@ -9,9 +9,12 @@ from itemadapter import ItemAdapter
 import os
 
 class ImagenesPipeline:
+    base = os.getcwd()
     def process_item(self, item, spider):
         for elemento in item["imagen"]:
-            print(f" \n\n /home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/imagenes/{item['universidad']}\n\n")
-            os.chdir(f"/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/imagenes/{item['universidad']}")
+            ruta = os.path.realpath(f"../../../corpus/red/imagenes/{item['universidad']}")
+            print(f"\n\n {ruta} \n\n")
+            os.chdir(ruta)
             os.system(f"wget {elemento}")
+            os.chdir(self.base)
         return item
