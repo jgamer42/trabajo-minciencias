@@ -5,7 +5,7 @@ import sys
 class bolivarianaBucaramanga(scrapy.Spider):
     name = 'bolivarianaBucaramanga'
     start_urls = ["https://estacionv.bucaramanga.upb.edu.co/buscar?searchword=conflicto%20armado&ordering=newest&searchphrase=all&areas[0]=categories&areas[1]=contacts&areas[2]=content&areas[3]=newsfeeds&areas[4]=weblinks&areas[5]=k2"]
-    secciones = ["conflicto%20armado","memoria","victimas","proceso%20de%20paz","paz"]
+    secciones = ["conflicto%20armado","memoria%20de%20las%20victimas","proceso%20de%20paz"]
 
 
     def parse(self,response):

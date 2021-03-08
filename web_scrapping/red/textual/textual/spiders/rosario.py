@@ -5,7 +5,7 @@ import sys
 class rosario(scrapy.Spider):
     name = 'rosario'
     start_urls = ["https://plazacapital.co/search/conflicto-armado/page-1"]
-    secciones = {"conflicto-armado":11,"memoria":18,"victimas":22,"proceso-de-paz":7,"paz":40}
+    secciones = {"conflicto-armado":11,"memoria-de-las-victimas":1,"proceso-de-paz":7}
 
     def parse(self,response):
         links = response.xpath("//div/h2/a/@href").getall()

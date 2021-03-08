@@ -5,7 +5,7 @@ import sys
 class tadeo(scrapy.Spider):
     name = 'tadeo'
     start_urls = ["https://www.utadeo.edu.co/es/search/node/%22conflicto%20armado%22"]
-    secciones = {"%22conflicto%armado%22":44,"memoria":197,"victimas":98,"proceso%20de%20paz":74,"paz":243}
+    secciones = {"%22conflicto%armado%22":44,"memoria%20de%20las%20victimas":16,"proceso%20de%20paz":74}
     def parse(self,response):
         a = response.xpath('//h3[@class="title"]/a/@href').getall()
         for link in a :

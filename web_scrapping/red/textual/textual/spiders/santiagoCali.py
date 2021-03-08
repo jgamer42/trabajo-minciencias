@@ -5,7 +5,7 @@ import sys
 class santiagoCali(scrapy.Spider):
     name = 'santiagoCali'
     start_urls = ["http://utopicos.com.co/index.php/component/search/?searchword=conflicto%20armado&searchphrase=all&limitstart=0"]
-    secciones = ["conflicto%20armado","memoria","victimas","proceso%20de%20paz"]
+    secciones = ["conflicto%20armado","memoria%20de%20las%20victimas","proceso%20de%20paz"]
     def parse(self,response):
         links = response.xpath("//dt/a/@href").getall()
         for link in links:

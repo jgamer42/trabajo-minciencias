@@ -5,7 +5,7 @@ import sys
 class univalle(scrapy.Spider):
     name = 'univalle'
     start_urls = ["http://ciudadvaga.univalle.edu.co/page/1/?s=conflicto+armado"]
-    secciones = {"conflicto+armado":3,"memoria":5,"victimas":4,"proceso+de+paz":4,"paz":6}
+    secciones = {"conflicto+armado":3,"memoria+de+las+victimas":2,"proceso+de+paz":4,"paz":6}
 
     def parse(self,response):
         links = response.xpath("//h2/a/@href").getall()

@@ -10,7 +10,7 @@ import sys
 class autonomaBucaramanga(scrapy.Spider):
     name = 'autonomaBucaramanga'
     start_urls = ["https://www.periodico15.com/page/1/?s=conflicto+armado"]
-    secciones = {"conflicto+armado":19,"memoria":17,"victimas":18,"proceso+de+paz":19,"paz":34}
+    secciones = {"conflicto+armado":19,"memoria+de+las+victimas":4,"proceso+de+paz":19}
 
     def parse(self,response):
         links = response.xpath("//h3/a/@href").getall()

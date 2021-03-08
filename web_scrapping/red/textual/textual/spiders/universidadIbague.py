@@ -5,7 +5,7 @@ import sys
 class universidadIbague(scrapy.Spider):
     name = 'universidadIbague'
     start_urls = ["https://www.elanzuelomedios.com/index.php/historias?searchword=conflicto%20armado&searchphrase=all&start=0"]
-    secciones = {"conflicto%20armado":20,"memoria":40,"victimas":0,"proceso%20de%20paz":40,"paz":40}
+    secciones = {"conflicto%20armado":20,"memoria%20de%20%las%20victimas":0,"proceso%20de%20paz":40,"paz":40}
 
     def parse(self,response):
         links = response.xpath("//article/header/h1/a/@href").getall()

@@ -5,8 +5,7 @@ import sys
 class universidadManizales(scrapy.Spider):
     name = 'universidadManizales'
     start_urls = ["https://umcentral.umanizales.edu.co/index.php/page/1/?s=conflicto+armado"]
-    secciones = {"conflicto+armado":2,"memoria":4,"victimas":3,"proceso+de+paz":3,"paz":5}
-    page = 1
+    secciones = {"conflicto+armado":2,"memoria+de+las+victimas":1,"proceso+de+paz":3}
 
     def parse(self,response):
         links = response.xpath("//div[@id and @class='tdc-row']/div/div[not(contains(@class,'td-is-sticky'))]/div/div/div/div/div/div/h3/a/@href").getall()
@@ -15,7 +14,7 @@ class universidadManizales(scrapy.Spider):
 
     
         for seccion in self.secciones.keys():
-            i = 0
+            i = 1
             while i < self.secciones[seccion]:
                 next_page = f"https://umcentral.umanizales.edu.co/index.php/page/{i}/?s={seccion}"
                 i += 1

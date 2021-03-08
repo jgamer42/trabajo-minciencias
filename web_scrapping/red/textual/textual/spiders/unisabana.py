@@ -5,7 +5,7 @@ import sys
 class unisabana(scrapy.Spider):
     name = 'unisabana'
     start_urls = ["https://www.unisabanamedios.com/search-results/q-conflicto-armado/qc-pages/page-1"]
-    secciones = {"conflicto-armado":19,"memoria":15,"victima":8,"proceso-de-paz":66,"paz":7}
+    secciones = {"conflicto-armado":19,"memoria-de-las-victimas":28,"proceso-de-paz":66}
     def parse(self,response):
         links = response.xpath('//div[@data-hook]/ul/li/a/@href').getall()
         for link in links:

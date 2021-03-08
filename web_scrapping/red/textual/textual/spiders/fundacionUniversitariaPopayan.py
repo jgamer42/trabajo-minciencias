@@ -5,7 +5,7 @@ import sys
 class fundacionUniversitariaPopayan(scrapy.Spider):
     name = 'fundacionUniversitariaPopayan'
     start_urls = ["http://elclaustro.com.co/elclaustro/page/1/?s=conflicto+armado"]
-    secciones = {"conflito+armado":2,"memoria":5,"victimas":3,"proceso+de+paz":4,"paz":9}
+    secciones = {"conflito+armado":2,"memoria+de+las+victimas":1,"proceso+de+paz":4,}
 
     def parse(self,response):
         links = response.xpath("//article/div/header/h2/a/@href").getall()

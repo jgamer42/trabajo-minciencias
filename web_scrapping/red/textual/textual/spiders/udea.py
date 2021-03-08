@@ -5,7 +5,7 @@ import sys
 class udea(scrapy.Spider):
     name = 'udea'
     start_urls = ["https://delaurbe.udea.edu.co/index.php/component/k2/itemlist/search?searchword=conflicto+armado&Itemid=138"]
-    secciones = ["conflicto+armado","memoria","victimas","proceso+de+paz","paz"]
+    secciones = ["conflicto+armado","memoria+de+las+victimas","proceso+de+paz"]
 
     def parse(self,response):
         links = response.xpath("//h2/a/@href").getall()
