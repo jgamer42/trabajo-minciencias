@@ -17,8 +17,11 @@ class TextualPipeline:
         if item["fecha"] == "no disponible" or item["fecha"] == "no disponible en este medio" or item["fecha"] == None or item["fecha"] == [] :
             item["fecha"] = "00/00/0000"
         else:
-            aux = control_fechas.valor(item["fecha"])
-            item["fecha"] = f"{aux[0]}/{aux[1]}/{aux[2]}"
+            try:
+                aux = control_fechas.valor(item["fecha"])
+                item["fecha"] = f"{aux[0]}/{aux[1]}/{aux[2]}"
+            except:
+                item["fecha"] = "00/00/0000"
         if item["exploracion_general"]:
             self.validar_palabras_clave(item)
         else:

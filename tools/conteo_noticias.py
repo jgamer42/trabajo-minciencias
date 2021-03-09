@@ -5,6 +5,11 @@ config.sections()
 config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
 carpetas = config["carpetas"]["carpetas"]
 carpetas = carpetas.split(",")
-os.chdir("../web_scrapping/red/textual")
+os.chdir("../corpus/red/texto")
+print("informe general")
+total = 0
 for carpeta in carpetas:
-    os.system(f"scrapy crawl {carpeta} -O /home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/exports/{carpeta}.json")
+    archivos = os.listdir(carpeta)
+    print(carpeta,len(archivos))
+    total += len(archivos)
+print("total: ",total)

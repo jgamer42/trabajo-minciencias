@@ -3,7 +3,7 @@ from ..items import TextualItem
 import sys
 
 class plataforma_upb_archivo_opinion(scrapy.Spider):
-    name = 'plataforma_upb_archivo_opinion'
+    name = "plataforma_upb_archivo_opinion"
     start_urls = ["https://plataforma.bucaramanga.upb.edu.co/archivo-opinion"]
     def parse(self,response):
         links = response.xpath("//h2/a/@href").getall()

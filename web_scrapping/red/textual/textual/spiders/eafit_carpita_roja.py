@@ -24,7 +24,7 @@ class eafit_carpita_roja(scrapy.Spider):
         item["contenido"] = content
         item["contenido_auxiliar"] = aux
         item["carpeta"] = self.name
-        item["exploracion_general"] = True
+        item["exploracion_general"] = None
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Medellin"
         item["nombre_medio"] = "bitacora"

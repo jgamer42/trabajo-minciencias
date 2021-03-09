@@ -12,12 +12,9 @@ class uniminutoradio(scrapy.Spider):
     def parse(self,response):
         links = []
         links.append(response.xpath("//h3/a/@href").getall())
-        links.append(procesar_peticion.uniminuto(37,"tdi_84_155","conflicto armado"))
-        links.append(procesar_peticion.uniminuto(53,"tdi_84_707","memoria"))
-        links.append(procesar_peticion.uniminuto(78,"tdi_84_cc7","victimas"))
-        links.append(procesar_peticion.uniminuto(55,"tdi_84_61a","proceso de paz"))
-        links.append(procesar_peticion.uniminuto(166,"tdi_84_e84","paz"))
-
+        links.append(procesar_peticion.uniminuto(37,"tdi_84_f64","conflicto armado"))
+        links.append(procesar_peticion.uniminuto(55,"tdi_84_088","proceso de paz"))
+        links.append(procesar_peticion.uniminuto(12,"tdi_84_22d","memoria de las victimas"))
         i = 0
         links = reducir_dimension(links)
         for link in links:

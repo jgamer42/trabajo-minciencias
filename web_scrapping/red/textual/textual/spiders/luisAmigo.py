@@ -5,7 +5,7 @@ import sys
 class luisAmigo(scrapy.Spider):
     name = 'luisAmigo'
     start_urls = ["http://www.funlam.edu.co/sextante/?s=conflicto+armado"]
-    secciones = [["conflicto+armado","memoria+de+las+victimas","proceso+de+paz"]
+    secciones = ["conflicto+armado","memoria+de+las+victimas","proceso+de+paz"]
     def parse(self,response):
         links = response.xpath("//article/a/@href").getall()
         for link in links:

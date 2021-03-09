@@ -13,13 +13,16 @@ def eafit(pagina,post_id,model_id,category):
     salida = []
     datos = requests.post(url, data=data)
     if datos.status_code != 200:
-        return None
-    post = datos.json().get("data")["posts"]
-    for html_data in post:
-        raw_data = html.fromstring(html_data)
-        link = raw_data.xpath("//a[@href]/@href")[0]
-        salida.append(link)
-    return salida
+        return []
+    try:
+        post = datos.json().get("data")["posts"]
+        for html_data in post:
+            raw_data = html.fromstring(html_data)
+            link = raw_data.xpath("//a[@href]/@href")[0]
+            salida.append(link)
+        return salida
+    except:
+        return []
 
 def uniminuto(pagina,tdi,palabra):
     salida = []
@@ -40,7 +43,7 @@ def uniminuto(pagina,tdi,palabra):
             "td_current_page":i,
             "block_type":"tdb_loop",
             "action" :"td_ajax_block",
-            "td_magic_token" : "4131bc82c7"
+            "td_magic_token" : "c9acf1298d"
         }
         datos = requests.post(url, data=data)
         if datos.status_code != 200:
@@ -55,4 +58,6 @@ def uniminuto(pagina,tdi,palabra):
         i += 1
     return salida
 #uniminuto(37,"tdi_84_155","conflicto armado")
+#print(eafit(1,10509,"0d23021",2791))
+print(eafit(1,10509,"0d23021",2793))
 
