@@ -4,7 +4,7 @@ def escritor(corpus,item):
     ruta = os.path.realpath(f"{base}/corpus/red/{corpus}/{item['carpeta']}/{item['titulo']}.txt")
     archivo = open(ruta,"w+")
     archivo.write(f"**** *AnalisisMediosUniversitarios\n")
-    archivo.write(f"**** *TipoNoticias_Textuales *Medio_{item['nombre_medio']} *Ciudad_{item['ciudad']} *Departamento_{item['departamento']} *Fecha_{item['fecha']}")
+    archivo.write(f"**** *TipoNoticias_Textuales *Medio_{item['nombre_medio']} *Ciudad_{item['ciudad']} *Departamento_{item['departamento']} *Fecha_{item['fecha']}\n")
     if corpus == "texto":
         archivo.write(f"titulo: {item['titulo']}\n\n")
         archivo.write(f"link: {item['link']}\n\n")
