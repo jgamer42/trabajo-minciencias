@@ -15,10 +15,7 @@ def ocr_space_file(filename, api_key='8592c0d84388957'):
                           data=payload,
                           )
     a=r.json()
-    print(a['ParsedResults'][0]["ParsedText"])
-    #return r.content.decode()
+    return a['ParsedResults'][0]["ParsedText"]
 
-#ocr_space_file("fotos/uniminuto_edicion34V2_01:05:15*.jpg")
-#ocr_space_file("fotos/uniminuto_edicion38V3_01:05:16*.jpg")
-# revisar estos dos archivos
-ocr_space_file("recorte.jpg")
+
+#ocr_space_file("Periódico15_307[6-8].pdf")

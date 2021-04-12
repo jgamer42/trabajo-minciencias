@@ -33,7 +33,7 @@ class ucp(scrapy.Spider):
         item["exploracion_general"] = True
         item["etiqueta_exploracion"] = None
         item["ciudad"] = "Pereira"
-        item["nombre_medio"] = "otun media laba"
+        item["nombre_medio"] = "otun media lab"
         item["universidad"] = "universidad catolica de Pereira"
         item["departamento"] = "Risaralda"
         yield item

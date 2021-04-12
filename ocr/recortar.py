@@ -2,35 +2,39 @@ from PyPDF2 import PdfFileReader,PdfFileWriter
 import pandas as pd
 
 def recortar(archivo,paginas):
-    pdf_file = f"../corpus/red/pdfs/{archivo}.pdf"
+    pdf_file = f"../corpus/red/pdfs_originales/{archivo}.pdf"
     pdf = PdfFileReader(pdf_file)
     pages = pdf.getNumPages()
     writer = PdfFileWriter()
-    flag = True
-    if (len(paginas)>=2):
-        for page in range(pages):
-            if(page >= int(paginas[0]) and page <= int(paginas[1])-1):
-                p = pdf.getPage(page)
-                writer.addPage(p)
-    else:
-        try:
-            page = pdf.getPage(paginas[0]-1)
-            writer.addPage(page)
-        except:
-            print(paginas[0],paginas[0]-1,pages)
-            flag = False
-    if flag:
-        output = f"{archivo}{str(paginas)}.pdf"
+    try:
+        page = pdf.getPage(int(paginas)-1)
+        output = f"{archivo}-{str(paginas)}.pdf"
+        writer.addPage(page)
         with open(output,"wb") as out:
             writer.write(out)
+    except:
+        print("fallo",archivo,paginas,pages)
+    
 
-data = pd.read_csv("primera extraccion.csv")
+data = pd.read_csv("modelo.csv")
 nombres = data["nombre"]
 paginas = data["paginas"]
+links = data["link"]
 i = 0
 for nombre in nombres:
-    limites = paginas[i].split("-")
-    limites = [int(l) for l in limites]
-    print(nombre,limites)
-    recortar(nombre,limites)
+    if "-" in paginas[i]:
+        pass
+    else:
+        try:
+            recortar(nombre,paginas[i])
+        except:
+            print(f"fallo {nombre} {paginas[i]}")
+        #if "contexto" in nombre:
+        #    print(f"{nombre},{paginas[i]},{links[i]}")
+        #    try:
+        #        print("funciona")
+        #        recortar(nombre,paginas[i])
+        #    except:
+        #        print("fallo")
+
     i = i + 1
