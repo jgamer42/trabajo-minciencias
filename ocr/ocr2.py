@@ -14,8 +14,9 @@ def ocr_space_file(filename, api_key='8592c0d84388957'):
                           files={filename: f},
                           data=payload,
                           )
+        print(r.json())
     a=r.json()
-    return a['ParsedResults'][0]["ParsedText"]
+    #return a['ParsedResults'][0]["ParsedText"]
 
 
-#ocr_space_file("Periódico15_307[6-8].pdf")
+ocr_space_file("/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/pdfs_recortes_completos/universidadBoyaca/pretexto_2[48-51]-comprimido.pdf")

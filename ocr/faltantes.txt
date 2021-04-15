@@ -1,0 +1,14 @@
+contexto_37[1-16] (que hacemos con este) (recortar pagina a pagina)
+
+(recortar de urbe_93 [2-5])urbe_93[2-3] (mal etiquetado) urbe_93[4-5] (mal etiquetado) (combinar con el anterior)
+plataforma_40[1-36] (reetiquetar como aparece en los datos)
+plataforma_35[17-34] (caso particular)
+
+
+
+norte_2[7]
+contexto_65[4-5]
+urbe_2_sur[2-3]
+urbe_73[22]
+urbe_73[23]
+urbe_73[24]
