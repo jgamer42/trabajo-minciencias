@@ -3,7 +3,8 @@ def buscar_palabras(texto):
     config = configparser.ConfigParser()
     config.sections()
     bandera = False
-    config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
+    #revisar aqui
+    config.read("/home/jaime/cosas/codigo/trabajo-minciencias/general.cfg")
     palabras = config["palabras_clave"]["palabras"]
     palabras = palabras.split(",")
     etiqueta = None

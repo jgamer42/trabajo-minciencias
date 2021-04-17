@@ -1,0 +1,30 @@
+import os 
+import configparser
+config = configparser.ConfigParser()
+config.sections()
+config.read("../general.cfg")
+universidades = config["carpetas"]["carpetas"]
+universidades = universidades.split(",") 
+base = os.path.dirname(os.getcwd())
+for universidad in universidades:
+    os.chdir(base+f"/corpus/red/texto/{universidad}")
+    nombre = ""
+    if "eafit" in universidad:
+        nombre = "eafit"
+    elif "plataforma" in universidad:
+        nombre = "plataforma"
+    elif "periodico15_conflicto" == universidad:
+        nombre = "autonomaBucaramanga"
+    else:
+        nombre = universidad
+    archivos = os.listdir()
+    os.chdir(base)
+    print(universidad)
+    #print(archivos,"\n\n")
+    for archivo in archivos:
+        ruta = base+f"/corpus/red/texto/{universidad}/{archivo}"
+        if "\'" in ruta:
+            os.system(f'cat "{ruta}" >> {nombre}.txt')
+        else:
+            os.system(f"cat '{ruta}' >> {base}/corpus/red/completos/{nombre}.txt")
+    print("\n\n")

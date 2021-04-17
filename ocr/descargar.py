@@ -15,11 +15,11 @@ os.chdir(ruta)
 for link in links:
     if f"{nombres[i]}.pdf" in os.listdir():
         print(f"{nombres[i]} estaba")
-    else if not("plataforma" in nombres[i]):
+    elif not("plataforma" in nombres[i]):
         descargar(link,nombres[i])
         print(f"{nombres[i]} descargando")
         time.sleep(3)
-    else if "platafomra" in nombres[i]:
+    elif "plataforma" in nombres[i]:
          os.system(f"wget -O{nombre}.pdf {links[i]}")  
     i = i + 1
 

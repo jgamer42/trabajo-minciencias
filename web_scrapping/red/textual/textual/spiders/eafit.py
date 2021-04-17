@@ -1,7 +1,7 @@
 import scrapy
 from ..items import TextualItem
 import site
-site.addsitedir("/home/jaime/compartida/codigo/trabajo-minciencias")
+site.addsitedir("/home/jaime/cosas/codigo/trabajo-minciencias")
 from utils import procesar_peticion
 from utils.reducir_dimension import reducir_dimension
 class eafit(scrapy.Spider):

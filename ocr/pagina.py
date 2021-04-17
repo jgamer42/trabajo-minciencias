@@ -9,7 +9,8 @@ def descargar(link,nombre):
     print(f"\n {link} \n")
     config = configparser.ConfigParser()
     config.sections()
-    config.read("/home/jaime/compartida/codigo/trabajo-minciencias/general.cfg")
+    #agregar ruta relativa
+    config.read("/home/jaime/cosas/codigo/trabajo-minciencias/general.cfg")
     posiciones = config["pagina"]
     webbrowser.open("http://issuu.pdf-downloader.com/")
     dormir = random.choice([2,3,4,5,6,7,8,10])
@@ -46,6 +47,7 @@ def descargar(link,nombre):
         print(f"fallo {nombre}")
     dormir = random.choice([1,2,3,4,5,6,7,8,9,10,15,20,25,30])
     time.sleep(dormir)
+
 
 def rename(nombre):
     base = os.path.dirname(os.path.abspath(__file__))
