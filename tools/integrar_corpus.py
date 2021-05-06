@@ -23,8 +23,8 @@ for universidad in universidades:
     #print(archivos,"\n\n")
     for archivo in archivos:
         ruta = base+f"/corpus/red/texto/{universidad}/{archivo}"
+        print(ruta)
         if "\'" in ruta:
-            os.system(f'cat "{ruta}" >> {nombre}.txt')
+            os.system(f'cat "{ruta}" >> {base}/corpus/red/completos/{nombre}.txt')
         else:
             os.system(f"cat '{ruta}' >> {base}/corpus/red/completos/{nombre}.txt")
-    print("\n\n")

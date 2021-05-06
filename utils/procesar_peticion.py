@@ -1,6 +1,7 @@
 import requests
 from lxml import html
 import json
+import configparser
 def eafit(pagina,post_id,model_id,category):
     url = "http://bitacora.eafit.edu.co/wp-admin/admin-ajax.php"
     data = {
@@ -25,10 +26,17 @@ def eafit(pagina,post_id,model_id,category):
         return []
 
 def uniminuto(pagina,tdi,palabra):
+    config = configparser.ConfigParser()
+    config.sections()
+    #config.read("../../../general.cfg")
+    config.read("../../../general.cfg")
+    baneadas = config["palabras_clave"]["bloqueadas"]
+    baneadas = baneadas.split(",") 
     salida = []
     bandera = True
     url = "https://www.uniminutoradio.com.co/wp-admin/admin-ajax.php?td_theme_name=Newspaper&v=10.3.9.1"
     file = open("../../../utils/config_uniminuto.json")
+    #file = open("utils/config_uniminuto.json")
     config = json.load(file)
     config["search_query"] = palabra
     config["class"] = tdi
@@ -43,7 +51,7 @@ def uniminuto(pagina,tdi,palabra):
             "td_current_page":i,
             "block_type":"tdb_loop",
             "action" :"td_ajax_block",
-            "td_magic_token" : "2838d4831d"
+            "td_magic_token" :"aafbf5cdb4"
         }
         datos = requests.post(url, data=data)
         if datos.status_code != 200:
@@ -54,10 +62,10 @@ def uniminuto(pagina,tdi,palabra):
         for link in links:
             if link.find("/seccion/") != -1:
                 links.remove(link)
+            for baneada in baneadas:
+                if baneada in link:
+                    links.remove(link)
             salida.append(link)
         i += 1
     return salida
-#uniminuto(37,"tdi_84_155","conflicto armado")
-#print(eafit(1,10509,"0d23021",2791))
-print(eafit(1,10509,"0d23021",2793))
 

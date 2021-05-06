@@ -57,3 +57,5 @@ def rename(nombre):
     os.chdir(base)
     dormir = random.choice([1,2,3,4,5])
     time.sleep(dormir)
+
+#print(pag.position())

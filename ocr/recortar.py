@@ -8,7 +8,7 @@ def recortar(archivo,paginas):
     writer = PdfFileWriter()
     try:
         page = pdf.getPage(int(paginas)-1)
-        output = f"{archivo}-{str(paginas)}.pdf"
+        output = f"{archivo}[{str(paginas)}].pdf"
         writer.addPage(page)
         with open(output,"wb") as out:
             writer.write(out)
@@ -22,19 +22,12 @@ paginas = data["paginas"]
 links = data["link"]
 i = 0
 for nombre in nombres:
-    if "-" in paginas[i]:
-        pass
-    else:
+    if nombre == "plataforma_35" or nombre == "contexto_37":
         try:
             recortar(nombre,paginas[i])
         except:
             print(f"fallo {nombre} {paginas[i]}")
-        #if "contexto" in nombre:
-        #    print(f"{nombre},{paginas[i]},{links[i]}")
-        #    try:
-        #        print("funciona")
-        #        recortar(nombre,paginas[i])
-        #    except:
-        #        print("fallo")
-
+    else:
+        pass
+        
     i = i + 1

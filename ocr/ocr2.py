@@ -1,7 +1,7 @@
 import requests
 
 
-def ocr_space_file(filename, api_key='8592c0d84388957'):
+def ocr_space_file(filename, api_key=''):
     payload = {'isOverlayRequired': False,
                'apikey': api_key,
                'language':'spa',
@@ -10,13 +10,15 @@ def ocr_space_file(filename, api_key='8592c0d84388957'):
                'OCREngine':1
                }
     with open(filename, 'rb') as f:
-        r = requests.post('https://api.ocr.space/parse/image',
+        r = requests.post('https://apipro1.ocr.space/parse/image',
                           files={filename: f},
                           data=payload,
                           )
-        print(r.json())
     a=r.json()
-    #return a['ParsedResults'][0]["ParsedText"]
+    try:
+        return a['ParsedResults'][0]["ParsedText"]
+    except:
+        return None
 
 
-ocr_space_file("/home/jaime/compartida/codigo/trabajo-minciencias/corpus/red/pdfs_recortes_completos/universidadBoyaca/pretexto_2[48-51]-comprimido.pdf")
+ocr_space_file("/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/pdfs_recortes/periódico15_329[6-7].pdf")

@@ -20,7 +20,7 @@ for link in links:
         print(f"{nombres[i]} descargando")
         time.sleep(3)
     elif "plataforma" in nombres[i]:
-         os.system(f"wget -O{nombre}.pdf {links[i]}")  
+        os.system(f"wget -O{nombres[i]}.pdf {links[i]}")  
     i = i + 1
 
 

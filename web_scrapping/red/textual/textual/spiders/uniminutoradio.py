@@ -26,7 +26,6 @@ class uniminutoradio(scrapy.Spider):
 
 
     def get_info(self,response,**kwargs):
-        print("entro\n\n")
         item = TextualItem()
         try:
             title = response.xpath("//div/h1[@class='tdb-title-text']/text()").get()
