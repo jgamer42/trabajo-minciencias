@@ -5,8 +5,8 @@ def escritor(corpus,item):
     ruta = os.path.realpath(f"{base}/corpus/red/{corpus}/{item['carpeta']}/{item['titulo']}.txt")
     config = configparser.ConfigParser()
     config.sections()
-    #config.read("../../../general.cfg")
-    config.read("../general.cfg")
+    config.read("../../../general.cfg")
+    #config.read("../general.cfg")
     baneadas = config["palabras_clave"]["bloqueadas"]
 
     baneadas = baneadas.split(",") 

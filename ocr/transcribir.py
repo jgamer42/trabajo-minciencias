@@ -9,7 +9,7 @@ import json
 import time
 
 def escribir_txt(destino,universidad,link,nombre,fecha):
-    archivo = open(f"../model/{universidad}.json")
+    archivo = open(f"/home/jaime/cosas/codigo/trabajo-minciencias/model/{universidad}.json")
     modelo = json.load(archivo)
     modelo["titulo"] = nombre
     modelo["fecha"] = fecha
@@ -29,6 +29,29 @@ def escribir_txt(destino,universidad,link,nombre,fecha):
             modelo["contenido"] = texto
             escritor("periodicos",modelo)
 
+def escribir_txt_particular(universidad,link,nombre,fecha):
+    archivo = open(f"/home/jaime/cosas/codigo/trabajo-minciencias/model/{universidad}.json")
+    modelo = json.load(archivo)
+    modelo["titulo"] = nombre
+    modelo["fecha"] = fecha
+    modelo["link"] = link
+    archivo = destino.split("/")[-1]
+    archivo = archivo.split(".")[0]
+    archivo = archivo+".txt"
+    elementos_recortar = os.listdir("/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/pdfs_particulares")
+    filtrados = filter(lambda elemento: nombre in elemento,elementos_recortar)
+    if  os.path.isfile(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/periodicos/{modelo['carpeta']}/{modelo['titulo']}"):
+        pass
+    else:
+        print(f"no esta: {modelo['carpeta']}/{archivo}")
+        texto = ""
+        for dato in filtrados:
+            texto = texto + ocr_space_file(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/pdfs_particulares/{dato}")
+        modelo["contenido"] = texto
+        escritor("periodicos",modelo)
+    
+
+
 
 data = pd.read_csv("modelo.csv")
 fechas = data.fecha
@@ -43,11 +66,11 @@ for nombre in nombres:
     archivo = f"/{nombre}[{paginas[i]}].pdf"
     destino = corpus + archivo
     if not(os.path.isfile(destino)):
-        print(f"no encontro {archivo} \n")
+        print(f"no encontro {archivo}")
     else:
-        if ("plataforma_35" in archivo) or ("periódico15_345" in archivo) or ("plataforma_17" in archivo) or ("plataforma_18" in archivo) or ("plataforma_23" in archivo) or ("plataforma_24" in archivo) or ("plataforma_25" in archivo) or ("plataforma_29" in archivo) or ("plataforma_31" in archivo) or ("plataforma_38" in archivo) or ("plataforma_40" in archivo) or ("pretexto_2" in archivo) or ("pretexto_4" in archivo) or ("pretexto_6" in archivo) or ("pretexto_7" in archivo) or ("pretexto_8" in archivo) or ("urbe_61" in archivo) or ("urbe_82" in archivo) or ("urbe_84" in archivo) or ("urbe_93" in archivo) or ("urbe_96" in archivo):
-            pass
+        if archivo.split("/")[1] in ['plataforma_24[14-18].pdf', 'plataforma_29[27-30].pdf', 'pretexto_2[48-51].pdf', 'pretexto_4[28-35].pdf', 'plataforma_31[12-16].pdf', 'periódico15_345[6-9].pdf', 'plataforma_31[8-11].pdf', 'plataforma_18[14-18].pdf', 'plataforma_23[4-7].pdf', 'plataforma_38[38-41].pdf', 'plataforma_35[17-34].pdf', 'urbe_96[16-19].pdf', 'urbe_61[8-11].pdf', 'plataforma_23[8-13].pdf', 'urbe_82[15-32].pdf', 'plataforma_40[2-6].pdf', 'plataforma_25[34-37].pdf', 'plataforma_17[10-13].pdf', 'pretexto_7[47-53].pdf', 'urbe_93[2-5].pdf', 'pretexto_6[21-27].pdf', 'urbe_84[6-11].pdf', 'pretexto_8[65-69].pdf']:
+            archivos = base + "/corpus/red/pdfs_particulares"
+            escribir_txt_particular(universidad[i],links[i],nombre,fechas[i])
         else:
             escribir_txt(destino,universidad[i],links[i],f"{nombre}[{paginas[i]}]",fechas[i])
     i = i + 1
-#print(os.path.isfile(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/periodicos/udea/urbe_43[10].txt"))

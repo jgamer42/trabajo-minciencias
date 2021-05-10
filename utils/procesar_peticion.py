@@ -51,7 +51,7 @@ def uniminuto(pagina,tdi,palabra):
             "td_current_page":i,
             "block_type":"tdb_loop",
             "action" :"td_ajax_block",
-            "td_magic_token" :"aafbf5cdb4"
+            "td_magic_token" :"e179cbb999"
         }
         datos = requests.post(url, data=data)
         if datos.status_code != 200:

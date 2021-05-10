@@ -48,4 +48,4 @@ def procesar():
             i += 1
         
     
-#print(identificar(os.path.dirname(os.getcwd())))
+print(identificar(os.path.dirname(os.getcwd())))
