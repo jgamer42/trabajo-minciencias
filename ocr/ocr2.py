@@ -1,7 +1,7 @@
 import requests
 
 
-def ocr_space_file(filename, api_key=''):
+def ocr_space_file(filename, api_key='PR8N6L8FAD9X'):
     payload = {'isOverlayRequired': False,
                'apikey': api_key,
                'language':'spa',

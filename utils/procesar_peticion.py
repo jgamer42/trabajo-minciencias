@@ -28,15 +28,14 @@ def eafit(pagina,post_id,model_id,category):
 def uniminuto(pagina,tdi,palabra):
     config = configparser.ConfigParser()
     config.sections()
-    #config.read("../../../general.cfg")
-    config.read("../../../general.cfg")
+    config.read("/home/jaime/cosas/codigo/trabajo-minciencias/general.cfg")
+    #config.read("../general.cfg")
     baneadas = config["palabras_clave"]["bloqueadas"]
     baneadas = baneadas.split(",") 
     salida = []
     bandera = True
     url = "https://www.uniminutoradio.com.co/wp-admin/admin-ajax.php?td_theme_name=Newspaper&v=10.3.9.1"
-    file = open("../../../utils/config_uniminuto.json")
-    #file = open("utils/config_uniminuto.json")
+    file = open("/home/jaime/cosas/codigo/trabajo-minciencias/utils/config_uniminuto.json")
     config = json.load(file)
     config["search_query"] = palabra
     config["class"] = tdi
@@ -51,7 +50,7 @@ def uniminuto(pagina,tdi,palabra):
             "td_current_page":i,
             "block_type":"tdb_loop",
             "action" :"td_ajax_block",
-            "td_magic_token" :"e179cbb999"
+            "td_magic_token" :"06ec6e93a3"
         }
         datos = requests.post(url, data=data)
         if datos.status_code != 200:
@@ -68,4 +67,5 @@ def uniminuto(pagina,tdi,palabra):
             salida.append(link)
         i += 1
     return salida
+print(uniminuto(37,"tdi_84_966","conflicto armado"))
 

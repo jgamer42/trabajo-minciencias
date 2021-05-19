@@ -1,9 +1,11 @@
 import json
 import os 
 import site 
+import configparser
 site.addsitedir("..")
 from utils.reducir_dimension import reducir_dimension
 base = "/home/jaime/cosas/codigo/trabajo-minciencias/"
+
 
 
 
@@ -47,10 +49,20 @@ def buscar_años_web(archivos):
 def construir_relacion_fecha_texto(fechas,archivos):
     corpus = {}
     for fecha in fechas:
-        corpus[fecha] = []
+        corpus[fecha] = []   
+        config = configparser.ConfigParser()
+        config.sections()
+        config.read("/home/jaime/cosas/codigo/trabajo-minciencias/general.cfg")
+        bloqueadas = config["palabras_clave"]["bloqueadas"]
         for archivo in archivos:
             if archivo["fecha"].split("/")[-1] == fecha:
-                corpus[fecha].append(archivo)
+                bandera = False
+                for bloqueada in bloqueadas:
+                    if bloqueada in archivo["contenido"]:
+                        bandera = True
+                        break
+                if not(bandera):
+                    corpus[fecha].append(archivo)
     return corpus
 
 def escribir(corpus):

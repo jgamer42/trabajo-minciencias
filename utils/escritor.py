@@ -5,19 +5,17 @@ def escritor(corpus,item):
     ruta = os.path.realpath(f"{base}/corpus/red/{corpus}/{item['carpeta']}/{item['titulo']}.txt")
     config = configparser.ConfigParser()
     config.sections()
-    config.read("../../../general.cfg")
-    #config.read("../general.cfg")
+    config.read("/home/jaime/cosas/codigo/trabajo-minciencias//general.cfg")
     baneadas = config["palabras_clave"]["bloqueadas"]
-
     baneadas = baneadas.split(",") 
     bandera = False
     for baneada in baneadas:
         try:
-            if baneada in item["contenido"] or baneada in item["contenido_auxiliar"]:
+            if baneada in item["contenido"] or baneada in item["contenido_auxiliar"] or baneada in item["link"]:
                 bandera = True
                 break
         except:
-            if baneada in item["contenido"]:
+            if baneada in item["contenido"] or baneada in item["link"]:
                 bandera = True
                 break
     if not(bandera):

@@ -23,7 +23,10 @@ class ucp(scrapy.Spider):
         title = response.xpath("//div/span/text()").get()
         content = response.xpath("//p/span/text()").getall()
         content = " ".join(content)
-        title = title.lstrip()
+        try:
+            title = title.lstrip()
+        except:
+            pass
         item["link"]=kwargs["link"]
         item["titulo"] = title
         item["fecha"] = "no disponible"

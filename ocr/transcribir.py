@@ -20,12 +20,10 @@ def escribir_txt(destino,universidad,link,nombre,fecha):
     if  os.path.isfile(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/periodicos/{modelo['carpeta']}/{archivo}"):
         pass     
     else:
-        print(f"no esta: {modelo['carpeta']}/{archivo}")
         texto = ocr_space_file(destino)
         if texto == None:
-            print("fallo la transcripcion\n")
+            print(f"{destino}fallo la transcripcion\n")
         else:
-            print("transcripcion exitosa\n")
             modelo["contenido"] = texto
             escritor("periodicos",modelo)
 
@@ -43,7 +41,6 @@ def escribir_txt_particular(universidad,link,nombre,fecha):
     if  os.path.isfile(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/periodicos/{modelo['carpeta']}/{modelo['titulo']}"):
         pass
     else:
-        print(f"no esta: {modelo['carpeta']}/{archivo}")
         texto = ""
         for dato in filtrados:
             texto = texto + ocr_space_file(f"/home/jaime/cosas/codigo/trabajo-minciencias/corpus/red/pdfs_particulares/{dato}")

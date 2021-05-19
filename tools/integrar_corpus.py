@@ -3,11 +3,13 @@ import configparser
 config = configparser.ConfigParser()
 config.sections()
 config.read("../general.cfg")
-universidades = config["carpetas"]["carpetas"]
-universidades = universidades.split(",") 
+#universidades = config["carpetas"]["carpetas"]
+#universidades = universidades.split(",") 
+corpus = "periodicos"
+universidades = ["autonomaBucaramanga","bolivarianaBucaramanga","bolivarianaMedellin","luisAmigo","santiagoCali","udea","uniminutoMedellin","uniminutoradio","universidadBoyaca"]
 base = os.path.dirname(os.getcwd())
 for universidad in universidades:
-    os.chdir(base+f"/corpus/red/texto/{universidad}")
+    os.chdir(base+f"/corpus/red/{corpus}/{universidad}")
     nombre = ""
     if "eafit" in universidad:
         nombre = "eafit"
@@ -22,7 +24,7 @@ for universidad in universidades:
     print(universidad)
     #print(archivos,"\n\n")
     for archivo in archivos:
-        ruta = base+f"/corpus/red/texto/{universidad}/{archivo}"
+        ruta = base+f"/corpus/red/{corpus}/{universidad}/{archivo}"
         print(ruta)
         if "\'" in ruta:
             os.system(f'cat "{ruta}" >> {base}/corpus/red/completos/{nombre}.txt')

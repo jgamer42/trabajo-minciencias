@@ -10,7 +10,6 @@ import site
 site.addsitedir("../../../")
 from utils.buscar_palabras import buscar_palabras
 from utils import control_fechas
-import os
 from utils.escritor import escritor
 class TextualPipeline:
     def process_item(self, item, spider):
