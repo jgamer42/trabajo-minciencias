@@ -4,6 +4,6 @@ file = pd.read_csv("extraible.csv")
 links = file.link
 test = links[0]
 yt = YouTube(test)
-data = yt.streams.filter(type="audio")[0]
+data = yt.streams.filter(type="audio")[1]
+print(data)
 data.download()
-#prueba
