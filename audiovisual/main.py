@@ -24,13 +24,15 @@ for link in links:
         model["titulo"] = aux
         model["link"] = link
         model["fecha"] = dates[i]
-        aux2 = aux.replace(" ","_")
-        os.chdir(f"{base}audiovisual/videos")
-        print(os.listdir())
-        os.rename(f"'{aux}.webm'",f"{aux2}.webm")
-        os.chdir(f"{base}audiovisual")
-        model["contenido"] = transcribir(aux2)
-        #escritor("audiovisual",model)
-
+        aux = aux.replace(".","")
+        aux = aux.replace(",","")
+        aux = aux.replace(":","")
+        aux = aux.replace("\"","")
+        aux = aux.replace("\'","")
+        try:
+            model["contenido"] = transcribir(f"{aux}.webm")
+            escritor("audiovisual",model)   
+        except:
+            print(f"{aux}.webm")
     i = i +1
 

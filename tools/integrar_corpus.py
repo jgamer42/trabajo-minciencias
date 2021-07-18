@@ -5,8 +5,9 @@ config.sections()
 config.read("../general.cfg")
 #universidades = config["carpetas"]["carpetas"]
 #universidades = universidades.split(",") 
-corpus = "periodicos"
-universidades = ["autonomaBucaramanga","bolivarianaBucaramanga","bolivarianaMedellin","luisAmigo","santiagoCali","udea","uniminutoMedellin","uniminutoradio","universidadBoyaca"]
+corpus = "audiovisual"
+universidades = ["eafit","politecnico","santiagoCali","udea","unisabana","univalle","universidadIbague"]
+#universidades = ["autonomaBucaramanga","bolivarianaBucaramanga","bolivarianaMedellin","luisAmigo","santiagoCali","udea","uniminutoMedellin","uniminutoradio","universidadBoyaca"]
 base = os.path.dirname(os.getcwd())
 for universidad in universidades:
     os.chdir(base+f"/corpus/red/{corpus}/{universidad}")

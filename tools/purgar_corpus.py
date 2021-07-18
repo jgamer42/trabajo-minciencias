@@ -1,6 +1,6 @@
 import os 
 base = os.path.dirname(os.getcwd())
-destino = "texto"
+destino = "sonoro"
 corpus = base +f"/corpus/red/{destino}"
 os.chdir(corpus)
 carpetas = os.listdir()
