@@ -2,8 +2,9 @@ import os
 import re 
 base = "/home/jaime/cosas/codigo/trabajo-minciencias/"
 #universidades = ["autonomaBucaramanga","bolivarianaBucaramanga","bolivarianaMedellin","luisAmigo","santiagoCali","udea","uniminutoMedellin","uniminutoradio","universidadBoyaca"]
-carpeta="audiovisual"
-universidades = ["eafit","politecnico","santiagoCali","udea","univalle","universidadIbague","unisabana"]
+carpeta="sonoro"
+#universidades = ["eafit","politecnico","santiagoCali","udea","univalle","universidadIbague","unisabana"]
+universidades = ["bolivarianaBucaramanga","bolivarianaMedellin","fundacionUniversitariaPopayan","udea","uniminutoradio","universidadManizales","universidadIbague"]
 def buscar_fecha_periodicos(texto):
     fecha = re.findall(r"[0-9]{2}\/[0-9]{2}\/[0-9]{2}",texto)
     if fecha == []:

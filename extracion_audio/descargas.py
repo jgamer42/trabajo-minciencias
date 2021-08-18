@@ -48,3 +48,5 @@ def bot(link,universidad,pasos):
         os.system(f"mv '{root_path}/corpus/sonoro/{archivo}' '{root_path}/corpus/red/sonoro/{universidad}/{archivo}'")
     except:
         print(f"fallo {link}")
+
+#print(pag.position())
